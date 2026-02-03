@@ -31,4 +31,11 @@ public interface OrderMapper {
      */
     void update(Orders orders);
 
+    /**
+     * 根据状态查询和下单时间订单状态
+     * @param status
+     * @return
+     */
+    @Select("select * from orders where status = #{status} and order_time < #{orderTime}")
+    List<Orders> getByStatusAndOrderTimeLT(Integer status, LocalDateTime orderTime);
 }
